@@ -1,7 +1,7 @@
 const express = require('express');
 const pool = require('../modules/pool');
 
-const router = express.Router
+const router = express.Router()
 router.get('/', (req, res) => {
 
     res.sendStatus(200);
@@ -43,3 +43,4 @@ pool.query(queryText, [req.params.id]).then((result) => {
     res.sendStatus(500);
 })
 });
+module.exports = router;
