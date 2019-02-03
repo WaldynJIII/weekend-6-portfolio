@@ -18,10 +18,106 @@ class AdminForm extends Component {
                 website: '',
                 github: '',
                 date_completed: '',
-                tag_id: '',
+                tag_id: 0,
 
             }
         }
+    }
+    changeThumbnail = (event) => {
+        this.setState({
+            projectToAdd: {
+                ...this.state.projectToAdd,
+                thumbnail: event.target.value
+            },
+        });
+    }
+    changeName = (event) => {
+        this.setState({
+            projectToAdd: {
+                ...this.state.projectToAdd,
+                name: event.target.value
+            },
+        });
+    }
+    changeWebsite= (event) => {
+        this.setState({
+            projectToAdd: {
+                ...this.state.projectToAdd,
+                website: event.target.value
+            },
+        });
+    }
+    changeGithub = (event) => {
+        this.setState({
+            projectToAdd: {
+                ...this.state.projectToAdd,
+                github: event.target.value
+            },
+        });
+    }
+    changeDate_completed = (event) => {
+        this.setState({
+            projectToAdd: {
+                ...this.state.projectToAdd,
+                date_completed: event.target.value
+            },
+        });
+    }
+    changeDescription = (event) => {
+        this.setState({
+            projectToAdd: {
+                ...this.state.projectToAdd,
+                description: event.target.value
+            },
+        });
+    }
+    setReact = (event) => {
+        this.setState({
+            projectToAdd: {
+                ...this.state.projectToAdd,
+                tag_id: 1
+            },
+        });
+    }
+    setjQuery = (event) => {
+        this.setState({
+            projectToAdd: {
+                ...this.state.projectToAdd,
+                tag_id: 2
+            },
+        });
+    }
+    setNode = (event) => {
+        this.setState({
+            projectToAdd: {
+                ...this.state.projectToAdd,
+                tag_id: 3
+            },
+        });
+    }
+    setSQL = (event) => {
+        this.setState({
+            projectToAdd: {
+                ...this.state.projectToAdd,
+                tag_id: 4
+            },
+        });
+    }
+    setRedux = (event) => {
+        this.setState({
+            projectToAdd: {
+                ...this.state.projectToAdd,
+                tag_id: 5
+            },
+        });
+    }
+    setHTML = (event) => {
+        this.setState({
+            projectToAdd: {
+                ...this.state.projectToAdd,
+                tag_id: 6
+            },
+        });
     }
     toggle() {
         this.setState(prevState => ({
@@ -53,7 +149,7 @@ render(){
                 </DropdownMenu>
             </Dropdown>
    
-    <input type="submit" value="Next" />
+    <input onClick="" type="submit" value="Next" />
 
 </form>
     )}}
