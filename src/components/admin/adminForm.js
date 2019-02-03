@@ -132,7 +132,7 @@ render(){
        
 <form onSubmit={this.addCustomer}>
     <input onChange={this.changeThumbnail} type="text" placeholder="thumbnail" />
-    <input onChange={this.changeName} type="text" placeholder="thumbnail" />
+    <input onChange={this.changeName} type="text" placeholder="name" />
     <input onChange={this.changeWebsite} type="text" placeholder="website" />
     <input onChange={this.changeGithub} type="text" placeholder="github" />
     <input onChange={this.changeDate_completed} type="number" placeholder="date" /> <br />
@@ -152,7 +152,7 @@ render(){
                 </DropdownMenu>
             </Dropdown>
    
-    <input onClick="" type="submit" value="Next" />
+    <input onClick={this.getGiphy} type="submit" value="Next" />
 
 </form>
     )}}

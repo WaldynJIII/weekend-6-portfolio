@@ -10,6 +10,8 @@ import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
 
+import { takeEvery, put } from 'redux-saga/effects'
+import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('YEET_PROJECT', postProject);
@@ -56,7 +58,7 @@ function* getProject(nextAction) {
     try {
         const projectResponse = yield axios.get('/api/project');
         // same as dispatch
-        console.log(boxResponse.data)
+        console.log(projectResponse.data)
         const nextAction = { type: 'SET_DISPLAY', payload: projectResponse.data };
 
         yield put(nextAction); // trigger our reducer

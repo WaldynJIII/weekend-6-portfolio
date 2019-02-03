@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
     console.log(req.body)
     let proj = req.body
     const queryText = `INSERT INTO "projects" ( "name", "description", "thumbnail", "website", "github", "date_completed", "tag_id")
-                       VALUES ($1, $2, $3, $4, $5)`
+                       VALUES ($1, $2, $3, $4, $5, $6, $7)`
     pool.query(queryText, [proj.name, proj.description, proj.thumbnail, proj.website, proj.github, proj.date_completed, proj.tag_id])
         .then((result) => {
             res.send(result.rows);
