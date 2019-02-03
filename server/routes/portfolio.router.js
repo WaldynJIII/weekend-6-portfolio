@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     res.sendStatus(200);
 
     const queryText = `SELECT * FROM "projects"
-    JOIN "tags" ON "tags"."id" = "projects"".tag_id" ORDER BY "id" ASC`;
+    JOIN "tags" ON "tags"."id" = "projects"."tag_id" ORDER BY "id" ASC`;
     pool.query(queryText)
         .then((result) => {
             res.send(result.rows);

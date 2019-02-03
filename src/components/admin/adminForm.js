@@ -135,7 +135,7 @@ render(){
     <input onChange={this.changeName} type="text" placeholder="name" />
     <input onChange={this.changeWebsite} type="text" placeholder="website" />
     <input onChange={this.changeGithub} type="text" placeholder="github" />
-    <input onChange={this.changeDate_completed} type="number" placeholder="date" /> <br />
+    <input onChange={this.changeDate_completed} type="date" placeholder="date" /> <br />
     <input onChange={this.changeDescription} type="text" placeholder="Description"/> <br></br>
             <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                 <DropdownToggle caret>
