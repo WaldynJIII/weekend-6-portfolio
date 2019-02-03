@@ -52,14 +52,14 @@ function* postProject(action) {
         alert('there was a problem. Check console logs');
     }
 }
-function* getProject(nextAction) {
+function* getProject(action) {
 
     // replaces the need for .then and .catch
     try {
-        const projectResponse = yield axios.get('/api/project');
+        const projectResponse = yield axios.get('/api/portfolio');
         // same as dispatch
-        console.log(projectResponse.data)
-        const nextAction = { type: 'SET_DISPLAY', payload: projectResponse.data };
+        console.log(projectResponse)
+        const nextAction = { type: 'SET_DISPLAY', payload: projectResponse };
 
         yield put(nextAction); // trigger our reducer
     } catch (error) {

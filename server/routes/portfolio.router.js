@@ -6,11 +6,11 @@ router.get('/', (req, res) => {
 
     res.sendStatus(200);
 
-    const queryText = `SELECT * FROM "projects"
-    JOIN "tags" ON "tags"."id" = "projects"."tag_id" ORDER BY "id" ASC`;
+    const queryText = `SELECT * FROM "projects" JOIN "tags" ON "tags"."id" = "projects"."tag_id" ORDER BY "date_completed" ASC`;
     pool.query(queryText)
         .then((result) => {
             res.send(result.rows);
+            console.log(result.rows)
         })
         .catch((error) => {
             console.log(`Error on query ${error}`);
