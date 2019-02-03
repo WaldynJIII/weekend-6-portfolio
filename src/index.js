@@ -12,7 +12,8 @@ import createSagaMiddleware from 'redux-saga';
 
 // Create the rootSaga generator function
 function* rootSaga() {
-
+    yield takeEvery('YEET_PROJECT', postProject);
+    yield takeEvery('GET_PROJECT', getProject);
 }
 
 // Create sagaMiddleware
@@ -21,7 +22,7 @@ const sagaMiddleware = createSagaMiddleware();
 // Used to store projects returned from the server
 const projects = (state = [], action) => {
     switch (action.type) {
-        case 'SET_PROJECTS':
+        case 'SET_DISPLAY':
             return action.payload;
         default:
             return state;
@@ -37,7 +38,33 @@ const tags = (state = [], action) => {
             return state;
     }
 }
+function* postProject(action) {
+    console.log(action.payload);
+    try {
+        yield axios.post('/api/portfolio', action.payload);
+        console.log(action.payload);
+        const nextAction = { type: 'GET_PROJECT' };
+        yield put(nextAction);
+    } catch (error) {
+        console.log('Error making POST request', error);
+        alert('there was a problem. Check console logs');
+    }
+}
+function* getProject(nextAction) {
 
+    // replaces the need for .then and .catch
+    try {
+        const projectResponse = yield axios.get('/api/project');
+        // same as dispatch
+        console.log(boxResponse.data)
+        const nextAction = { type: 'SET_DISPLAY', payload: projectResponse.data };
+
+        yield put(nextAction); // trigger our reducer
+    } catch (error) {
+        console.log('Error making GET request', error);
+        alert('there was a problem');
+    }
+}
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({

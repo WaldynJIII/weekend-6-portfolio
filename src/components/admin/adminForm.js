@@ -119,6 +119,9 @@ class AdminForm extends Component {
             },
         });
     }
+    getGiphy = () => {
+        this.props.dispatch({ type: 'YEET_PROJECT', payload: this.state.projectToAdd });
+    }
     toggle() {
         this.setState(prevState => ({
             dropdownOpen: !prevState.dropdownOpen
