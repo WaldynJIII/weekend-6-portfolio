@@ -57,8 +57,9 @@ function* getProject(nextAction) {
 }
 function* postProject(action) {
     console.log(action.payload);
+    let projectToAdd = action.payload
     try {
-        yield axios.post('/api/portfolio', action.payload);
+        yield axios.post('/api/portfolio', projectToAdd);
         console.log(action.payload);
         const action = { type: 'GET_PROJECT' };
         yield put(action);

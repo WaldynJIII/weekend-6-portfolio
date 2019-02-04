@@ -29,6 +29,8 @@ router.post('/', (req, res) => {
     pool.query(queryText, [proj.name, proj.description, proj.thumbnail, proj.website, proj.github, proj.date_completed, proj.tag_id])
         .then((result) => {
             res.send(result.rows);
+            res.sendStatus(200)
+        
         })
         .catch((error) => {
             console.log(`Error on query ${error}`);
