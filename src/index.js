@@ -40,6 +40,21 @@ const tags = (state = [], action) => {
             return state;
     }
 }
+function* getProject(nextAction) {
+
+    // replaces the need for .then and .catch
+    try {
+        const portfolioResponse = yield axios.get('/api/portfolio');
+        // same as dispatch
+        console.log(portfolioResponse.data)
+        const nextAction = { type: 'SET_DISPLAY', payload: portfolioResponse};
+
+        yield put(nextAction); // trigger our reducer
+    } catch (error) {
+        console.log('Error making GET request', error);
+        alert('there was a problem');
+    }
+}
 function* postProject(action) {
     console.log(action.payload);
     try {
@@ -52,21 +67,7 @@ function* postProject(action) {
         alert('there was a problem. Check console logs');
     }
 }
-function* getProject() {
 
-    // replaces the need for .then and .catch
-    try {
-        const projectResponse = yield axios.get('/api/portfolio');
-        // same as dispatch
-        console.log(projectResponse)
-        const action = { type: 'SET_DISPLAY', payload: projectResponse };
-
-        yield put(action); // trigger our reducer
-    } catch (error) {
-        console.log('Error making GET request', error);
-        alert('there was a problem');
-    }
-}
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({

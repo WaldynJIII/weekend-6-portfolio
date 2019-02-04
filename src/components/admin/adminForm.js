@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+i
 
     
 class AdminForm extends Component {
@@ -71,55 +71,12 @@ class AdminForm extends Component {
             },
         });
     }
-    setReact = (event) => {
+   
+    categoryChange = (event) => {
         this.setState({
-            projectToAdd: {
-                ...this.state.projectToAdd,
-                tag_id: 1
-            },
-        });
-    }
-    setjQuery = (event) => {
-        this.setState({
-            projectToAdd: {
-                ...this.state.projectToAdd,
-                tag_id: 2
-            },
-        });
-    }
-    setNode = (event) => {
-        this.setState({
-            projectToAdd: {
-                ...this.state.projectToAdd,
-                tag_id: 3
-            },
-        });
-    }
-    setSQL = (event) => {
-        this.setState({
-            projectToAdd: {
-                ...this.state.projectToAdd,
-                tag_id: 4
-            },
-        });
-    }
-    setRedux = (event) => {
-        this.setState({
-            projectToAdd: {
-                ...this.state.projectToAdd,
-                tag_id: 5
-            },
-        });
-    }
-    setHTML = (event) => {
-        this.setState({
-            projectToAdd: {
-                ...this.state.projectToAdd,
-                tag_id: 6
-            },
-        });
-    }
-    getGiphy = () => {
+            tag_id: event.target.value,
+        })}
+    getProject = () => {
         this.props.dispatch({ type: 'YEET_PROJECT', payload: this.state.projectToAdd });
     }
     toggle() {
@@ -137,21 +94,26 @@ render(){
     <input onChange={this.changeGithub} type="text" placeholder="github" />
     <input onChange={this.changeDate_completed} type="date" placeholder="date" /> <br />
     <input onChange={this.changeDescription} type="text" placeholder="Description"/> <br></br>
-            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                <DropdownToggle caret>
-                    Dropdown
-        </DropdownToggle>
-                <DropdownMenu>
-                    <DropdownItem header>Tag</DropdownItem>
-                    <DropdownItem onClick={this.setReact}>React</DropdownItem>
-                    <DropdownItem onClick={this.setjQuery}>jQuery</DropdownItem>
-                    <DropdownItem onClick={this.setNode}>Node</DropdownItem> 
-                    <DropdownItem onClick={this.setSQL}>SQL</DropdownItem>
-                    <DropdownItem onClick={this.setRedux}>Redux</DropdownItem>
-                    <DropdownItem onClick={this.setHTML}>HTML</DropdownItem>
-                </DropdownMenu>
-            </Dropdown>
-   
+           
+            <Card>
+                <CardContent>
+                    <img src={this.props.gif.images.downsized.url} />
+                </CardContent>
+                <CardActions>
+                    <select onChange={this.categoryChange} className="category">
+                        <option />
+                        <option value="1">Funny</option>
+                        <option value="2">Vega</option>
+                        <option value="3">Cartoon</option>
+                        <option value="4">NSFW</option>
+                        <option value="5">Meme</option>
+                    </select>
+                    {this.disableBtn()}
+                    {/* <Button onClick={this.favoriteBtn} variant="contained" color="primary">Favorite</Button> */}
+                </CardActions>
+            </Card>
+        );
+       
     <input onClick={this.getGiphy} type="submit" value="Next" />
 
 </form>

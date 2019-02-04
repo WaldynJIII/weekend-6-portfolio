@@ -10,9 +10,22 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Tab from '@material-ui/core/Tab';
+import axios from 'axios'
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      portfolioArray: [],
+    }
+  }
+   LinkTab=(props)=> {
+  return <Tab component="a" onClick={event => event.preventDefault()} {...props} />;
+}
+
   // Renders the entire app on the DOM
   render() {
+  
     return (
       <div className="App">
       <Router>
