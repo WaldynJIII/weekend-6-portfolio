@@ -31,7 +31,9 @@ class App extends Component {
   getProject = () => {
     this.props.dispatch({ type: 'GET_PROJECT' });
   }
-  // Renders the entire app on the DOM
+  
+
+
   render() {
   
     return (
@@ -65,6 +67,16 @@ class App extends Component {
                   <Typography component="p">
                   {project.date_completed}
                   </Typography>
+                   <Typography component="p">
+                     {project.website}
+                   </Typography>
+                   <Typography component="p">
+                     {project.date_github}
+                   </Typography>
+                   
+
+
+                   
                 </CardContent>
               </CardActionArea>
             

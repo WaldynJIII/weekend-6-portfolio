@@ -104,7 +104,13 @@ class AdminForm extends Component {
     getProject = () => {
         this.props.dispatch({ type: 'GET_PROJECT' });
     }
-   
+    removeFromlis = (event) => {
+        
+        const action = { type: 'REMOVE', action: event.target.value}
+        this.props.dispatch(action)
+        this.forceUpdate()
+    }
+
 render(){
     return (
        <div>
@@ -149,8 +155,9 @@ render(){
         {this.props.reduxStore.projects.map((project, i) => {
             return (
                 <tr>
-                    <td>{project.name}</td><td>{project.date_completed}</td><td>{project.tag_id}</td>
+                    <td>{project.id} {project.name}</td><td>{project.date_completed}</td><td>{project.tag_id}</td><Button value={project.id} onClick={this.removeFromList}>Remove From Cart</Button><td></td>
                 </tr>
+                
             )
         })}
       </tbody>
