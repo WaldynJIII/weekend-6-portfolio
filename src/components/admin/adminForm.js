@@ -14,7 +14,7 @@ class AdminForm extends Component {
         super(props);
         
         this.state = {
-                dropdownOpen: false,
+                
             projectToAdd: {
                 name: '',
                 description: '',
@@ -22,7 +22,7 @@ class AdminForm extends Component {
                 website: '',
                 github: '',
                 date_completed: '',
-                tag_id: 0,
+                tag_id: '',
 
             }
         }
@@ -89,10 +89,12 @@ class AdminForm extends Component {
     }
    
     tagChange = (event) => {
+      
         this.setState({
+            projectToAdd:{
             ...this.state.projectToAdd,
             tag_id: event.target.value,
-            
+            } 
         })
     console.log(this.state.projectToAdd.tag_id)}
     yeetProject = () => {
@@ -122,7 +124,7 @@ render(){
                 <CardActions>
                     <select onClick={this.tagChange} className="category">
                         <option />
-                        <option value="1">React</option>
+                            <option onClick={this.tagChange} value="1">React</option>
                         <option value="2">jQuery</option>
                         <option value="3">SQL</option>
                         <option value="4">HTML</option>

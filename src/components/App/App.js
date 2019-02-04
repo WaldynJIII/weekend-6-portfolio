@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import Tab from '@material-ui/core/Tab';
 import axios from 'axios'
 import { connect } from 'react-redux';
+import { publicDecrypt } from 'crypto';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -50,7 +51,7 @@ class App extends Component {
                   component="img"
                   alt={project.description}
                   className="item-img"
-                  height="340"
+                  height="240"
                 image={project.thumbnail}
                 title={project.name}
                 />
