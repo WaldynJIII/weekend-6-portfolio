@@ -13,6 +13,7 @@ import Tab from '@material-ui/core/Tab';
 import axios from 'axios'
 import { connect } from 'react-redux';
 import { publicDecrypt } from 'crypto';
+import Button from '@material-ui/core/Button';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -23,11 +24,9 @@ class App extends Component {
   }
   componentDidMount = () => {
     this.getProject();
-    this.LinkTab();
+   
   }
-   LinkTab=(props)=> {
-  return <Tab component="a" onClick={event => event.preventDefault()} {...props} />;
-}
+   
   getProject = () => {
     this.props.dispatch({ type: 'GET_PROJECT' });
   }
@@ -64,16 +63,22 @@ class App extends Component {
                   <Typography component="p">
                   {project.description}
                   </Typography>
-                  <Typography component="p">
-                  {project.date_completed}
-                  </Typography>
+                  <Router>
+                    <Button>
+                   <Link to="route" target="_blank" onClick={(event) => { event.preventDefault(); window.open(this.makeHref(project.website)); }} />
+                </Button>
+                </Router>
                    <Typography component="p">
-                     {project.website}
+                   <Router>
+                     <Button>
+                     Github<Link to={project.github} target="_blank" onClick={(event) => { event.preventDefault(); window.open(this.makeHref(project.github)); }} />
+                   </Button>
+                   </Router>
                    </Typography>
                    <Typography component="p">
                      {project.date_github}
                    </Typography>
-                   
+
 
 
                    

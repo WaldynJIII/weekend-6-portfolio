@@ -39,8 +39,10 @@ router.post('/', (req, res) => {
 });
 
 router.delete('/', (req, res) => {
+    const deleteId = req.body
+    console.log(deleteId)
     const queryText = `DELETE FROM "projects" WHERE "id" = $1`
-    pool.query(queryText, [req.params.id]).then((result) => {
+    pool.query(queryText, [deleteId]).then((result) => {
         res.sendStatus(200);
     }).catch((error) => {
         console.log('Error in DELETE', error);

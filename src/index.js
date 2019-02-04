@@ -16,7 +16,9 @@ import axios from 'axios';
 function* rootSaga() {
     yield takeEvery('YEET_PROJECT', postProject);
     yield takeEvery('GET_PROJECT', getProject);
+    yield takeEvery('REMOVE', deleteProject);
 }
+
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -59,12 +61,27 @@ function* postProject(action) {
     console.log(action.payload);
     let projectToAdd = action.payload
     try {
+        console.log(projectToAdd)
         yield axios.post('/api/portfolio', projectToAdd);
         console.log(action.payload);
         const action = { type: 'GET_PROJECT' };
         yield put(action);
     } catch (error) {
         console.log('Error making POST request', error);
+        alert('there was a problem. Check console logs');
+    }
+}
+function* deleteProject(action) {
+    console.log(action.payload);
+    let projectToRemove = action.payload
+    console.log(projectToRemove)
+    try {
+        yield axios.delete('/api/portfolio', projectToRemove);
+        console.log(action.payload);
+        const action = { type: 'GET_PROJECT' };
+        yield put(action);
+    } catch (error) {
+        console.log('Error making Delete request', error);
         alert('there was a problem. Check console logs');
     }
 }
