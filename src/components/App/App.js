@@ -34,41 +34,46 @@ class App extends Component {
   render() {
   
     return (
+     
       <div className="App">
       <Router>
-        <Route exact path="/admin" component={adminForm} />
+        <Route path="/admin" component={adminForm} />
         </Router>
-        {/* <Grid item md={3}> 
+        
+       
+        {this.props.reduxStore.projects.map((project, i) => {
+         return(
+         <Grid item md={3}> 
             <Card className="item-card">
               <CardActionArea>
                 <CardMedia
                   component="img"
-                  alt={this.props.reduxStore.projects.description}
+                  alt={project.description}
                   className="item-img"
                   height="340"
-                image={this.props.reduxStore.projects.thumbnail}
-                title={this.props.reduxStore.projects.name}
+                image={project.thumbnail}
+                title={project.name}
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
-                  {this.props.reduxStore.projects.name}
+                  {project.name}
                   </Typography>
                   <Typography component="p">
-                  {this.props.reduxStore.projects.description}
+                  {project.description}
                   </Typography>
                   <Typography component="p">
-                  {this.props.reduxStore.projects.date_completed}
+                  {project.date_completed}
                   </Typography>
                 </CardContent>
               </CardActionArea>
             
             </Card>
-          </Grid> */}
-   
-              
-      </div> 
-    );
-  }
+          </Grid> 
+        )})}
+      </div>       
+      
+  
+    )}
 }
 const mapReduxStoreToProps = (reduxStore) => ({
   reduxStore: reduxStore
