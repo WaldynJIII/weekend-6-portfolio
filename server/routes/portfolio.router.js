@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
 
     
 
-    const queryText = `SELECT * FROM "projects" JOIN "tags" ON "tags"."id" = "projects"."tag_id" ORDER BY "date_completed" ASC`;
+    const queryText = `SELECT * FROM "projects"  ORDER BY "id" ASC`;
     
     pool.query(queryText)
         .then((result) => {

@@ -11,6 +11,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Tab from '@material-ui/core/Tab';
 import axios from 'axios'
+import { connect } from 'react-redux';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -19,10 +20,16 @@ class App extends Component {
       portfolioArray: [],
     }
   }
+  componentDidMount = () => {
+    this.getProject();
+    this.LinkTab();
+  }
    LinkTab=(props)=> {
   return <Tab component="a" onClick={event => event.preventDefault()} {...props} />;
 }
-
+  getProject = () => {
+    this.props.dispatch({ type: 'GET_PROJECT' });
+  }
   // Renders the entire app on the DOM
   render() {
   
@@ -31,8 +38,7 @@ class App extends Component {
       <Router>
         <Route exact path="/admin" component={adminForm} />
         </Router>
-        
-                <Grid item md={3}>
+        {/* <Grid item md={3}> 
             <Card className="item-card">
               <CardActionArea>
                 <CardMedia
@@ -57,11 +63,14 @@ class App extends Component {
               </CardActionArea>
             
             </Card>
-          </Grid>
-          )}
-      </div>
+          </Grid> */}
+   
+              
+      </div> 
     );
   }
 }
-
-export default App;
+const mapReduxStoreToProps = (reduxStore) => ({
+  reduxStore: reduxStore
+})
+export default connect(mapReduxStoreToProps)(App);

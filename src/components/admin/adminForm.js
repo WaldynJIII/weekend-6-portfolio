@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 
-i
+
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import Button from '@material-ui/core/Button';
+import CardContent from '@material-ui/core/CardContent';
 
     
 class AdminForm extends Component {
     constructor(props) {
         super(props);
-        this.toggle = this.toggle.bind(this);
+        
         this.state = {
                 dropdownOpen: false,
             projectToAdd: {
@@ -22,6 +26,18 @@ class AdminForm extends Component {
 
             }
         }
+    }
+    componentDidMount = () => {
+        this.getProject();
+       
+    }
+    disableBtn = () => {
+        if (this.state.category === '') {
+            return <Button variant="contained" color="primary" disabled>Tag</Button>
+        } else {
+            return <Button className="nextBtn"
+                onClick={this.tagChange} variant="contained" color="primary">Tag</Button>
+        };
     }
     changeThumbnail = (event) => {
         this.setState({
@@ -72,21 +88,27 @@ class AdminForm extends Component {
         });
     }
    
-    categoryChange = (event) => {
+    tagChange = (event) => {
         this.setState({
+            ...this.state.projectToAdd,
             tag_id: event.target.value,
-        })}
+            
+        })
+    console.log(this.state.projectToAdd.tag_id)}
+    yeetProject = () => {
+        const action = { type: 'YEET_PROJECT', payload: this.state.projectToAdd }
+        this.props.dispatch(action);
+    }
     getProject = () => {
-        this.props.dispatch({ type: 'YEET_PROJECT', payload: this.state.projectToAdd });
+        this.props.dispatch({ type: 'GET_PROJECT' });
     }
-    toggle() {
-        this.setState(prevState => ({
-            dropdownOpen: !prevState.dropdownOpen
-        }));
-    }
+   
 render(){
     return (
-       
+       <div>
+
+            <Card>
+                
 <form onSubmit={this.addCustomer}>
     <input onChange={this.changeThumbnail} type="text" placeholder="thumbnail" />
     <input onChange={this.changeName} type="text" placeholder="name" />
@@ -95,29 +117,46 @@ render(){
     <input onChange={this.changeDate_completed} type="date" placeholder="date" /> <br />
     <input onChange={this.changeDescription} type="text" placeholder="Description"/> <br></br>
            
-            <Card>
-                <CardContent>
-                    <img src={this.props.gif.images.downsized.url} />
-                </CardContent>
+          
+              
                 <CardActions>
-                    <select onChange={this.categoryChange} className="category">
+                    <select onClick={this.tagChange} className="category">
                         <option />
-                        <option value="1">Funny</option>
-                        <option value="2">Vega</option>
-                        <option value="3">Cartoon</option>
-                        <option value="4">NSFW</option>
-                        <option value="5">Meme</option>
+                        <option value="1">React</option>
+                        <option value="2">jQuery</option>
+                        <option value="3">SQL</option>
+                        <option value="4">HTML</option>
+                        <option value="5">ReduX</option>
+                        <option value="6">Node</option>
+
                     </select>
-                    {this.disableBtn()}
-                    {/* <Button onClick={this.favoriteBtn} variant="contained" color="primary">Favorite</Button> */}
+                            {this.disableBtn()}
+                    
                 </CardActions>
-            </Card>
-        );
+           
+        
        
-    <input onClick={this.getGiphy} type="submit" value="Next" />
+    <input onClick={this.yeetProject} type="submit" value="Next" />
 
 </form>
-    )}}
+
+    </Card>
+<table className="admin-table">
+    
+        <tbody>
+        {this.props.reduxStore.projects.map((project, i) => {
+            return (
+                <tr>
+                    <td>{project.name}</td><td>{project.date_completed}</td><td>{project.tag_id}</td>
+                </tr>
+            )
+        })}
+      </tbody>
+            </table>
+            </div>
+    )}
+    }
+
 const mapReduxStoreToProps = (reduxStore) => ({
     reduxStore: reduxStore
 })

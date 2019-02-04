@@ -47,9 +47,9 @@ function* getProject(nextAction) {
         const portfolioResponse = yield axios.get('/api/portfolio');
         // same as dispatch
         console.log(portfolioResponse.data)
-        const nextAction = { type: 'SET_DISPLAY', payload: portfolioResponse};
+        const action = { type: 'SET_DISPLAY', payload: portfolioResponse.data};
 
-        yield put(nextAction); // trigger our reducer
+        yield put(action); // trigger our reducer
     } catch (error) {
         console.log('Error making GET request', error);
         alert('there was a problem');
@@ -60,8 +60,8 @@ function* postProject(action) {
     try {
         yield axios.post('/api/portfolio', action.payload);
         console.log(action.payload);
-        const nextAction = { type: 'GET_PROJECT' };
-        yield put(nextAction);
+        const action = { type: 'GET_PROJECT' };
+        yield put(action);
     } catch (error) {
         console.log('Error making POST request', error);
         alert('there was a problem. Check console logs');
